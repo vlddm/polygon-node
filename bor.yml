@@ -8,10 +8,10 @@ services:
     volumes:
         - /data/polygon/bor:/root/.ethereum
     ports:
-        - "8145:8545" # RPC
-        - "8146:8546" # WS
-        - "30303:30303" # Peers (TCP)
-        - "30303:30303/udp" # Peers (UDP)
+        - "127.0.0.1:8145:8545" # RPC
+        - "127.0.0.1:8146:8546" # WS
+        - "30137:30137" # Peers (TCP)
+        - "30137:30137/udp" # Peers (UDP)
     command:
         - bor
         - --cache=8192
