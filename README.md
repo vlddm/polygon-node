@@ -35,7 +35,7 @@ Run `bor`
 docker-compose -f bor.yml up -d
 ```
 
-Check for bot sync status (`false` means synced)
+Check for `bor` sync status (`false` means synced)
 ```
 docker exec bor bor attach --exec eth.syncing
 ```
