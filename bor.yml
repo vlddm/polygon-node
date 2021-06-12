@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  bor:
+    container_name: bor
+    image: vlddm/bor:v0.2.6
+    build: bor
+    volumes:
+        - /data/polygon/bor:/root/.ethereum
+    ports:
+        - "8145:8545" # RPC
+        - "30303:30303" # Peers (TCP)
+        - "30303:30303/udp" # Peers (UDP)
+    command:
+        - bor
+        - --cache=8192
+        - --bor.heimdall=http://heimdallr:1317

@@ -1,0 +1,6 @@
+[submodule "heimdall"]
+	path = heimdall
+	url = https://github.com/vlddm/heimdall.git
+[submodule "bor"]
+	path = bor
+	url = https://github.com/vlddm/bor.git
