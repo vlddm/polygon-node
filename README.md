@@ -55,8 +55,7 @@ Test it using [geth](https://geth.ethereum.org/downloads/) binary:
 ```
 geth attach http://localhost:8545
 geth attach ws://localhost:8546
-geth attach /data/polygon/bor/geth.ipc
-# Last one needs root privileges
+sudo geth attach /data/polygon/bor/geth.ipc
 ```
 
 ### Thanks to
