@@ -3,7 +3,7 @@ version: '3.4'
 services:
   bor:
     container_name: bor
-    image: bor:latest
+    image: vlddm/bor:v0.2.6
     build: bor
     volumes:
         - /data/polygon/bor:/root/.ethereum

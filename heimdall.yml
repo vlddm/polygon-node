@@ -10,7 +10,7 @@ services:
   
   heimdalld:
     container_name: heimdalld
-    image: heimdall:latest
+    image: vlddm/heimdall:v0.2.1-mainnet
     build: heimdall
     restart: unless-stopped
     volumes:
@@ -29,7 +29,7 @@ services:
 
   heimdall-rest-server:
     container_name: heimdall-rest-server
-    image: heimdall:latest
+    image: vlddm/heimdall:v0.2.1-mainnet
     build: heimdall
     restart: unless-stopped
     volumes:
