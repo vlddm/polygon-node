@@ -1,0 +1,61 @@
+version: '3.4'
+
+services:
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3-alpine
+    ports:
+      - "5672:5672" # RabbitMQ
+    restart: unless-stopped
+  
+  heimdalld:
+    container_name: heimdalld
+    image: heimdall:latest
+    build: heimdall
+    restart: unless-stopped
+    volumes:
+      - /data/polygon/heimdall:/root/.heimdalld
+    ports:
+      - "26656:26656" # P2P (TCP)
+      - "127.0.0.1:26657:26657" # RPC (TCP)
+    depends_on:
+      - rabbitmq
+    command:
+      - heimdalld
+      - start
+      - --moniker=MyNodeName
+      - --p2p.laddr=tcp://0.0.0.0:26656
+      - --rpc.laddr=tcp://0.0.0.0:26657
+
+  heimdallr:
+    container_name: heimdall-rest-server
+    image: heimdall:latest
+    build: heimdall
+    restart: unless-stopped
+    volumes:
+      - /data/polygon/heimdall:/root/.heimdalld
+    ports:
+      - "127.0.0.1:1317:1317" # Heimdall REST API
+    depends_on:
+      - heimdalld
+    command:
+      - heimdalld
+      - rest-server
+      - --chain-id=137
+      - --laddr=tcp://0.0.0.0:1317
+      - --node=tcp://heimdalld:26657
+
+  bor:
+    container_name: bor
+    image: bor:latest
+    build: bor
+    volumes:
+        - /data/polygon/bor:/root/.ethereum
+    ports:
+        - "8145:8545" # RPC
+        - "30303:30303" # Peers (TCP)
+        - "30303:30303/udp" # Peers (UDP)
+    command:
+        - bor
+        - --cache=8192
+        - --bor.heimdall=http://heimdallr:1317
