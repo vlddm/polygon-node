@@ -1,7 +1,8 @@
 # polygon-node
 Polygon (ex Matic) Fullnode dockerfiles
 
-## QuickStart
+## Usage
+### Blockchain snapshots download
 
 Download and extract blockchain snapshots to make things faster 
 
@@ -37,7 +38,26 @@ Do not start `bor` until `heimdall` full sync.
 docker-compose -f bor.yml up -d
 ```
 
-Check for `bor` sync status. `false` means synced
+Check for `bor` sync status. 
 ```
 docker exec bor bor attach --exec eth.syncing
 ```
+`false` means synced
+
+### JSONRPC
+
+* HTTP JSONRPC at port 8145
+* WebSocket at 8146
+* IPC (unix socket) at /data/polygon/bor/geth.ipc
+
+Test it using [geth](https://geth.ethereum.org/downloads/) binary:
+
+```
+geth attach http://localhost:8545
+geth attach ws://localhost:8546
+geth attach /data/polygon/bor/geth.ipc
+# Last one needs root privileges
+```
+
+### Thanks to
+Great article [How to run a Polygon (Matic) Mainnet Node with Docker](https://chasewright.com/how-to-run-a-polygon-matic-mainnet-node/) by [Chase Wright](https://chasewright.com)
