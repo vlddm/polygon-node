@@ -9,6 +9,7 @@ services:
         - /data/polygon/bor:/root/.ethereum
     ports:
         - "8145:8545" # RPC
+        - "8146:8546" # WS
         - "30303:30303" # Peers (TCP)
         - "30303:30303/udp" # Peers (UDP)
     command:
