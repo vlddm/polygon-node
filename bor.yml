@@ -4,7 +4,7 @@ services:
   bor:
     container_name: bor
     image: vlddm/bor:v0.2.6
-    build: bor
+    #build: bor
     volumes:
         - /data/polygon/bor:/root/.ethereum
     ports:
@@ -15,4 +15,4 @@ services:
     command:
         - bor
         - --cache=8192
-        - --bor.heimdall=http://heimdallr:1317
+        - --bor.heimdall=http://heimdall-rest-server:1317

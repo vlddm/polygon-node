@@ -11,7 +11,7 @@ services:
   heimdalld:
     container_name: heimdalld
     image: vlddm/heimdall:v0.2.1-mainnet
-    build: heimdall
+    #build: heimdall
     restart: unless-stopped
     volumes:
       - /data/polygon/heimdall:/root/.heimdalld
@@ -30,7 +30,7 @@ services:
   heimdall-rest-server:
     container_name: heimdall-rest-server
     image: vlddm/heimdall:v0.2.1-mainnet
-    build: heimdall
+    #build: heimdall
     restart: unless-stopped
     volumes:
       - /data/polygon/heimdall:/root/.heimdalld
